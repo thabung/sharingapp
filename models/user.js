@@ -20,9 +20,18 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: true
     },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
     mobile: {
       type: DataTypes.STRING,
       allowNull: true
+    },
+    isActive: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: '0'
     },
     created_by: {
       type: DataTypes.INTEGER(10),
@@ -32,11 +41,11 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER(10),
       allowNull: true
     },
-    created_at: {
+    createdAt: {
       type: DataTypes.DATE,
       allowNull: true
     },
-    updated_at: {
+    updatedAt: {
       type: DataTypes.DATE,
       allowNull: true
     }

@@ -1,24 +1,41 @@
 var express = require('express');
 var router = express.Router();
-var userCtrl = require("../src/controller/userController.js").getInstance();
-console.log(JSON.stringify(userCtrl));
+var jwt = require('jsonwebtoken');
 
+var userCtrl = require("../src/controller/userController.js").getInstance();
+var authCtrl = require("../src/controller/authController").getInstance();
 // middleware that is specific to this router
 router.use(function timeLog(req, res, next) {
   console.log('Time: ', Date.now());
   next();
 });
-// define the home page route
-router.get('/', function(req, res) {
-    console.log("AAAAAAAAAAHHHH FCUKK");
-  res.send('Lets share, Sharing is caring');
-});
-// define the about route
+
+function validateToken(req, res,next) {
+
+    try {
+        var authorization = req.get("Authorization");
+        var payload = jwt.verify(authorization, process.env.jwtSecret);
+        GLOBAL.AUTHUSER = payload.userId;
+        console.log(payload);
+        next();
+    } catch(e) {
+        res.status(401);
+        res.send(e);
+    }
+    
+}
+
+
 router.get('/about', function(req, res) {
-  res.send('Somebody like you');
+  res.send('The earth is still a good place to live!');
 });
 
 router.post('/users',userCtrl.create);
-router.get('/users',userCtrl.getList);
+router.post('/login',authCtrl.login);
+router.put('/users/:id',validateToken, userCtrl.update);
+//router.delete('/users/:id', userCtrl.update);
+
+
+
 
 module.exports = router;

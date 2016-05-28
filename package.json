@@ -3,8 +3,15 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
+    "body-parser": "^1.15.1",
+    "connect": "^3.4.1",
+    "dotenv": "^2.0.0",
+    "envs": "^0.1.6",
     "express": "^4.0.0",
-    "jade": ">= 0.0.1"
+    "jade": ">= 0.0.1",
+    "md5": "^2.1.0",
+    "mysql": "^2.10.2",
+    "sequelize": "^3.23.3"
   },
   "main": "app.js",
   "devDependencies": {},

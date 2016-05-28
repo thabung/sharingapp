@@ -4,7 +4,8 @@ module.exports = function(sequelize, DataTypes) {
   return sequelize.define('expense', {
     id: {
       type: DataTypes.INTEGER(10),
-      allowNull: false
+      allowNull: false,
+      primaryKey: true
     },
     room_id: {
       type: DataTypes.INTEGER(10),
@@ -47,7 +48,7 @@ module.exports = function(sequelize, DataTypes) {
         key: 'id'
       }
     },
-    created_at: {
+    createdAt: {
       type: DataTypes.DATE,
       allowNull: false
     },
