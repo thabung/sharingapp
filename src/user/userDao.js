@@ -61,7 +61,7 @@ userDao.prototype.update = function (data, callback) {
     if (!miscHelper.isNull(data.password)) {
         data.password = self.generatePassword(data.password);
     }
-    models.user.find({id: data.id}).then(function (res) {
+    models.user.find({where:{id: data.id}}).then(function (res) {
         res.updateAttributes(data).then(function (result) {
             return  callback(null, result);
         });
@@ -78,25 +78,34 @@ userDao.prototype.update = function (data, callback) {
  * @returns {undefined}
  */
 userDao.prototype.getActiveUserByEmail = function (email, callback) {
-
-    models.user.find({email: email}).then(function (res) {
-
+    models.user.find({where:{email: email}}).then(function (res) {
         if (res) {
             if (res.isActive == 1) {
                 return callback(null, res);
             } else {
                 return callback({code: 422, msg: "User not activated"});
             }
-
         } else {
             return callback({code: 422, msg: "No user found with this email"});
         }
-
     });
-
 };
 
-
+userDao.prototype.getUserByResetToken = function (resetToken, callback) {
+    console.log(resetToken);
+    models.user.find({where:{token: resetToken}}).then(function (res) {
+        if (res) {
+            console.log("LOGIININNGNGGNGN");
+            if (res.isActive == 1) {
+                return callback(null, res);
+            } else {
+                return callback({code: 422, msg: "User not activated"});
+            }
+        } else {
+            return callback({code: 422, msg: "No user found with this token"});
+        }
+    });
+};
 
 module.exports.getInstance = function () {
     return new userDao();

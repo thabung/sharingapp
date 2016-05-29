@@ -22,6 +22,13 @@ authController.prototype.forgotPassword = function(req,res){
     });
     
 }
+
+authController.prototype.resetPassword = function(req,res){
+    authService.resetPassword(req,function(err,data) {
+        return commonCtrl.jsonOutput(err,res,data);
+    });
+    
+}
 module.exports.getInstance = function () {
   return new authController();
 };

@@ -103,9 +103,29 @@ authService.prototype.forgotPassword = function (req, callback) {
                             token:updateResult.token
                         },callback
                     );
-                return callback(null, {success:1});
              });
             }
+    });
+}
+
+authService.prototype.resetPassword = function(req,callback) {
+    var data = req.body;
+    console.log(data);
+    userDao.getUserByResetToken(data.token,function(err,result) {
+        if (result) {
+            data.id = result.id;
+            data.token = "";
+            console.log("data------------------");
+            console.log(data);
+            if (!miscHelper.isNull(data.password)) {
+                return userDao.update(data,callback);
+            } else {
+                callback({code:422,msg:"Password missing"});
+            }
+        } else {
+            return callback(err);
+        }
+        
     });
 }
 

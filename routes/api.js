@@ -37,6 +37,7 @@ router.put('/users/:id',validateToken, userCtrl.update);
 
 
 router.post('/forgot-password',authCtrl.forgotPassword);
+router.post('/reset-password',authCtrl.resetPassword);
 //router.post('/reset-password',authCtrl.resetPassword);
 
 
