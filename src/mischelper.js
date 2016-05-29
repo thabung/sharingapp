@@ -1,5 +1,6 @@
 var self;
-md5 =require('md5');
+var randomstring = require("randomstring");
+ 
 
 var miscHelper = function () {
     self = this;
@@ -31,7 +32,8 @@ miscHelper.prototype.checkErrorExist = function(erroObject) {
 
 
 miscHelper.prototype.generateRandomToken = function(email) {
-    return md5(new Date().getTime() + email);
+    return randomstring.generate() ;
+
 }
 
 

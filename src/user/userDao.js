@@ -7,7 +7,12 @@ var userDao = function () {
     self = this;
 };
 
-
+/**
+ * Generate password
+ * 
+ * @param {type} password
+ * @returns {unresolved}
+ */
 userDao.prototype.generatePassword = function (password)
 {
     
