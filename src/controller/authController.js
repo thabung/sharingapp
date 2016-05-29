@@ -13,6 +13,15 @@ authController.prototype.login = function(req,res){
     });
     
 }
+
+
+
+authController.prototype.forgotPassword = function(req,res){
+    authService.forgotPassword(req,function(err,data) {
+        return commonCtrl.jsonOutput(err,res,data);
+    });
+    
+}
 module.exports.getInstance = function () {
   return new authController();
 };

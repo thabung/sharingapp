@@ -2,6 +2,7 @@ var self;
 var jwt = require('jsonwebtoken');
 var userDao = require("../user/userDao.js").getInstance();
 var miscHelper = require("../mischelper.js").getInstance();
+var mailService = require("../mail/mailService.js").getInstance();
 var validator = require('validator');
 var authService = function () {
     self = this;
@@ -71,6 +72,40 @@ authService.prototype.login = function (request, callback) {
                 email:data.email
             }
         });
+    });
+}
+
+
+/**
+ * Forgot password
+ * 
+ * @param {type} req
+ * @param {type} res
+ * @returns {unresolved}
+ */
+authService.prototype.forgotPassword = function (req, callback) {
+    var data = req.body;
+    if (miscHelper.isNull(data.email)) {
+        return callback({code: 422, msg: "Email missing"});
+    }
+    userDao.getActiveUserByEmail(data.email, function (err, result) {
+        if (err) {
+            return callback(err);
+        } else {
+            var data = {id: result.id, token: miscHelper.generateRandomToken()};
+            userDao.update(data, function (err, updateResult) {
+                if (err) {
+                    return callback(err);
+                }
+                mailService.sendResetPassword(
+                        {
+                            to:updateResult.email,
+                            token:updateResult.token
+                        },callback
+                    );
+                return callback(null, {success:1});
+             });
+            }
     });
 }
 

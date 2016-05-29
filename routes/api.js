@@ -36,6 +36,10 @@ router.put('/users/:id',validateToken, userCtrl.update);
 //router.delete('/users/:id', userCtrl.update);
 
 
+router.post('/forgot-password',authCtrl.forgotPassword);
+//router.post('/reset-password',authCtrl.resetPassword);
+
+
 
 
 module.exports = router;

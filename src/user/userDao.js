@@ -70,6 +70,33 @@ userDao.prototype.update = function (data, callback) {
 };
 
 
+/**
+ * Get active user by email
+ * 
+ * @param {type} email
+ * @param {type} callback
+ * @returns {undefined}
+ */
+userDao.prototype.getActiveUserByEmail = function (email, callback) {
+
+    models.user.find({email: email}).then(function (res) {
+
+        if (res) {
+            if (res.isActive == 1) {
+                return callback(null, res);
+            } else {
+                return callback({code: 422, msg: "User not activated"});
+            }
+
+        } else {
+            return callback({code: 422, msg: "No user found with this email"});
+        }
+
+    });
+
+};
+
+
 
 module.exports.getInstance = function () {
     return new userDao();
