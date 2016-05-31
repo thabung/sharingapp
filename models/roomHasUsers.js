@@ -31,7 +31,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     created_by: {
       type: DataTypes.INTEGER(10),
-      allowNull: false,
+      allowNull: true,
       references: {
         model: 'user',
         key: 'id'
@@ -39,15 +39,15 @@ module.exports = function(sequelize, DataTypes) {
     },
     updated_by: {
       type: DataTypes.INTEGER(10),
-      allowNull: false
+      allowNull: true
     },
-    created_at: {
+    createdAt: {
       type: DataTypes.DATE,
-      allowNull: false
+      allowNull: true
     },
-    updated_at: {
+    updatedAt: {
       type: DataTypes.DATE,
-      allowNull: false
+      allowNull: true
     }
   }, {
     tableName: 'roomHasUsers'

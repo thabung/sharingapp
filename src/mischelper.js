@@ -20,7 +20,6 @@ miscHelper.prototype.isNull = function (value) {
 
 };
 
-
 miscHelper.prototype.checkErrorExist = function(erroObject) {
     if (Object.keys(erroObject).length > 0) {
         return true;
@@ -29,7 +28,6 @@ miscHelper.prototype.checkErrorExist = function(erroObject) {
     }
     
 }
-
 
 miscHelper.prototype.generateRandomToken = function(email) {
     return randomstring.generate() ;

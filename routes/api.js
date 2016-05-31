@@ -4,6 +4,7 @@ var jwt = require('jsonwebtoken');
 
 var userCtrl = require("../src/controller/userController.js").getInstance();
 var authCtrl = require("../src/controller/authController").getInstance();
+var roomCtrl = require("../src/controller/roomController").getInstance();
 // middleware that is specific to this router
 router.use(function timeLog(req, res, next) {
   console.log('Time: ', Date.now());
@@ -38,6 +39,8 @@ router.put('/users/:id',validateToken, userCtrl.update);
 
 router.post('/forgot-password',authCtrl.forgotPassword);
 router.post('/reset-password',authCtrl.resetPassword);
+
+router.post('/rooms',validateToken,roomCtrl.create);
 //router.post('/reset-password',authCtrl.resetPassword);
 
 

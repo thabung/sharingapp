@@ -23,6 +23,12 @@ userController.prototype.update = function(req,res) {
   });
 };
 
+userController.prototype.activate = function(req,res) {
+  userService.activate(req,function(err,data) {
+    return commonCtrl.jsonOutput(err,res,data);
+  });
+};
+
 
 module.exports.getInstance = function () {
   return new userController();

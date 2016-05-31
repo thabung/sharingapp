@@ -79,6 +79,23 @@ userService.prototype.update = function(req, callback){
     
 }
 
+userService.prototype.activate = function(req,callback) {
+    
+    userDao.getUserByResetToken(data.token,function(err,result) {
+        if (result) {
+            data.id = result.id;
+            data.token = "";
+            data.isActive = 1;
+            console.log(data);
+            return userDao.update(data,callback);
+        } else {
+            return callback(err);
+        }
+        
+    });
+    
+}
+
 module.exports.getInstance = function () {
     return new userService();
 };
