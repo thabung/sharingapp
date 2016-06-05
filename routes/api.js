@@ -41,8 +41,7 @@ router.post('/forgot-password',authCtrl.forgotPassword);
 router.post('/reset-password',authCtrl.resetPassword);
 
 router.post('/rooms',validateToken,roomCtrl.create);
-//router.post('/reset-password',authCtrl.resetPassword);
-
+router.get('/rooms/:id',validateToken,roomCtrl.read);
 
 
 

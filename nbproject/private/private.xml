@@ -3,9 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/thabung/code/sharingapp/src/mischelper.js</file>
-            <file>file:/home/thabung/code/sharingapp/src/room/roomService.js</file>
             <file>file:/home/thabung/code/sharingapp/src/room/roomDao.js</file>
+            <file>file:/home/thabung/code/sharingapp/src/room/roomService.js</file>
+            <file>file:/home/thabung/code/sharingapp/src/room/roomHasUserDao.js</file>
         </group>
     </open-files>
 </project-private>
