@@ -52,6 +52,12 @@ roomHasUserDao.prototype.isAdmin = function (roomId, userId, callback) {
     });
 };
 
+roomHasUserDao.prototype.deleteByRoomId = function(roomId,callback) {
+    
+    
+    
+};
+
 module.exports.getInstance = function () {
     return new roomHasUserDao();
 };

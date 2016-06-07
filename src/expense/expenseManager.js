@@ -3,7 +3,7 @@ var _ = require("underscore");
 var roomDao = require("../room/roomDao.js").getInstance();
 var roomHasUserDao = require("../room/roomHasUserDao.js").getInstance();
 var self;
-var roomService = function () {
+var expenseService = function () {
     self = this;
 };
 
@@ -14,24 +14,29 @@ var roomService = function () {
  * @param {type} callback
  * @returns {undefined}
  */
-roomService.prototype.create = function(req,callback) {
+expenseService.prototype.create = function(req,callback) {
     var data = req.body;
-    roomDao.create(data, function(err,result) {
+    roomHasUserDao.isMember(data.room_id,data.user_id, function(err,result) {
         if (err) {
            return callback(err);
         }
-        var rhuObj = {
-            user_id:GLOBAL.AUTHUSER,
-            room_id:result.id,
-            role:"admin"
-        }
-        roomHasUserDao.create(rhuObj,function(err,rhu){
-            if (err) {
-                return callback(err);
-            }
-           return callback(null,{room_id:result.id,room_name:result.name,owner:rhu.user_id});
-        });
+        
     });
+};
+
+
+
+expenseService.prototype.getStatusCode = function (req, callback) {
+    var data = req.body;
+    roomHasUserDao.isMember(data.room_id,miscHelper.AUTHUSER,function(err,result) {
+        if (err) {
+            return callback(err);
+        }
+        
+    });
+
+
+
 };
 
 
@@ -41,7 +46,7 @@ roomService.prototype.create = function(req,callback) {
  * @param {type} callback
  * @returns {undefined}
  */
-roomService.prototype.read = function(req,callback) {
+expenseService.prototype.read = function(req,callback) {
     var roomId = req.params.id;
     console.log(roomId);
     roomHasUserDao.isMember(GLOBAL.AUTHUSER,roomId,function(err,res) {
@@ -59,7 +64,7 @@ roomService.prototype.read = function(req,callback) {
 };
 
 
-roomService.prototype.update = function (req, callback) {
+expenseService.prototype.update = function (req, callback) {
     var data = req.body;
     var updateData = {
         'name': data.name
@@ -73,7 +78,7 @@ roomService.prototype.update = function (req, callback) {
     });
 };
 
-roomService.prototype.delete = function (req, callback) {
+expenseService.prototype.delete = function (req, callback) {
     var roomId = req.params.id;
     roomHasUserDao.isAdmin(data.room_id, GLOBAL.AUTHUSER, function (err, yesNo) {
         if (err) {
@@ -92,7 +97,7 @@ roomService.prototype.delete = function (req, callback) {
 
 };
 
-roomService.prototype.addUserToRoom = function(req,callback){
+expenseService.prototype.addUserToRoom = function(req,callback){
     var data = req.body;
     roomHasUserDao.isAdmin(data.room_id,GLOBAL.AUTHUSER,function(err,yesNo) {
         if (err) {
@@ -108,7 +113,7 @@ roomService.prototype.addUserToRoom = function(req,callback){
     });
 }
 
-roomService.prototype.delete = function (req, callback) {
+expenseService.prototype.delete = function (req, callback) {
     var data = req.body;
     roomHasUserDao.isAdmin(data.room_id, GLOBAL.AUTHUSER, function (err, yesNo) {
         if (err) {
@@ -131,7 +136,7 @@ roomService.prototype.delete = function (req, callback) {
 };
 
 
-roomService.prototype.removeUserFromRoom = function(req,callback) {
+expenseService.prototype.removeUserFromRoom = function(req,callback) {
     // check if user is admin
     var data = req.body;
     roomHasUserDao.isAdmin(data.room_id,data.user_id,function(err,isAdmin) {
@@ -148,7 +153,7 @@ roomService.prototype.removeUserFromRoom = function(req,callback) {
     });
 }
 
-roomService.prototype.changeRole = function(req,callback) {
+expenseService.prototype.changeRole = function(req,callback) {
     // check if user is admin
     var data = req.body;
     roomHasUserDao.isAdmin(data.room_id,data.user_id,function(err,isAdmin) {
@@ -171,7 +176,7 @@ roomService.prototype.changeRole = function(req,callback) {
  * @param {type} callback
  * @returns {undefined}
  */
-roomService.prototype.leaveRoom = function (req, callback) {
+expenseService.prototype.leaveRoom = function (req, callback) {
     var data = req.body;
     var input = {user_id: GLOBAL.AUTHUSER, room_id: data.room_id};
     roomHasUserDao.deleteByUserAndRoom(input, function (err, response) {
@@ -186,6 +191,6 @@ roomService.prototype.leaveRoom = function (req, callback) {
 // change admin roles
 
 module.exports.getInstance = function () {
-  return new roomService();
+  return new expenseService();
 };
 
