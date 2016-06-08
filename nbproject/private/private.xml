@@ -5,7 +5,16 @@
         <group>
             <file>file:/home/thabung/code/sharingapp/src/room/roomDao.js</file>
             <file>file:/home/thabung/code/sharingapp/src/room/roomService.js</file>
+            <file>file:/home/thabung/code/sharingapp/src/expense/expenseManager.js</file>
             <file>file:/home/thabung/code/sharingapp/src/room/roomHasUserDao.js</file>
+            <file>file:/home/thabung/code/sharingapp/models/expense.js</file>
+            <file>file:/home/thabung/code/sharingapp/models/index.js</file>
+            <file>file:/home/thabung/code/sharingapp/models/room.js</file>
+            <file>file:/home/thabung/code/sharingapp/models/roomHasUsers.js</file>
+            <file>file:/home/thabung/code/sharingapp/models/user.js</file>
+            <file>file:/home/thabung/code/sharingapp/models/expenseStatus.js</file>
+            <file>file:/home/thabung/code/sharingapp/src/expense/expenseStatusDao.js</file>
+            <file>file:/home/thabung/code/sharingapp/src/expense/expenseDao.js</file>
         </group>
     </open-files>
 </project-private>

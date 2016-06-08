@@ -5,7 +5,8 @@ module.exports = function(sequelize, DataTypes) {
     id: {
       type: DataTypes.INTEGER(10),
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     room_id: {
       type: DataTypes.INTEGER(10),
@@ -34,7 +35,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     created_by: {
       type: DataTypes.INTEGER(10),
-      allowNull: false,
+      allowNull: true,
       references: {
         model: 'user',
         key: 'id'
@@ -42,7 +43,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     updated_by: {
       type: DataTypes.INTEGER(10),
-      allowNull: false,
+      allowNull: true,
       references: {
         model: 'user',
         key: 'id'
@@ -52,7 +53,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.DATE,
       allowNull: false
     },
-    updated_at: {
+    updatedAt: {
       type: DataTypes.DATE,
       allowNull: false
     },
