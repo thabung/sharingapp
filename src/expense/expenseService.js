@@ -28,7 +28,7 @@ expenseService.prototype.create = function(req,callback) {
             } 
            
            
-            data.uid = res1.dataValues.status;
+            data.uid = res1.dataValues.uid;
             data.user_id = GLOBAL.AUTHUSER;
             
             console.log(data);
@@ -69,8 +69,8 @@ expenseService.prototype.getStatusCode = function (req, callback) {
                     },callback1);
                 }
                 if (res1.length) {
-                    if (res1.status == 0) {
-                       return callback(null,res1) ;
+                    if (res1[0].status == 0) {
+                       return callback(null,{dataValues:res1[0]}) ;
                     } else {
                         return createFunc(callback);
                     }
@@ -82,50 +82,6 @@ expenseService.prototype.getStatusCode = function (req, callback) {
     });
 };
 
-
-/**
- * 
- * @param {type} req
- * @param {type} callback
- * @returns {undefined}
- */
-expenseService.prototype.read = function(req,callback) {
-    var roomId = req.params.id;
-    console.log(roomId);
-    roomHasUserDao.isMember(GLOBAL.AUTHUSER,roomId,function(err,res) {
-        if (err) {
-            return callback(err);
-        } else {
-            roomDao.getRoomAndUsers(roomId,function(err,res1) {
-                if (err) {
-                    return callback(err);
-                }
-                return callback(null,res1);
-            });
-        }
-    })
-};
-
-
-
-
-
-expenseService.prototype.removeUserFromRoom = function(req,callback) {
-    // check if user is admin
-    var data = req.body;
-    roomHasUserDao.isAdmin(data.room_id,data.user_id,function(err,isAdmin) {
-        if (err) {
-           return callback(err);
-        }
-        roomHasUserDao.remove(data.room_id,data.user_id,function(err,result) {
-            if (err) {
-                return callback(err);
-            }
-            callback(null,result);
-            
-        });
-    });
-}
 
 
 
