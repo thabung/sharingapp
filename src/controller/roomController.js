@@ -26,6 +26,13 @@ roomController.prototype.read = function(req,res) {
   });
 };
 
+
+roomController.prototype.addUserToRoom = function(req,res) {
+  roomService.addUserToRoom(req,function(err,data) {
+      return commonCtrl.jsonOutput(err,res,data);
+  });
+};
+
 //roomController()
 
 module.exports.getInstance = function () {

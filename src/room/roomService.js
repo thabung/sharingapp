@@ -94,15 +94,18 @@ roomService.prototype.delete = function (req, callback) {
 
 roomService.prototype.addUserToRoom = function(req,callback){
     var data = req.body;
-    roomHasUserDao.isAdmin(data.room_id,GLOBAL.AUTHUSER,function(err,yesNo) {
+    var roomId = req.params.id;
+    data.room_id = roomId;
+    roomHasUserDao.isAdmin(roomId,GLOBAL.AUTHUSER,function(err,yesNo) {
         if (err) {
             return callback(err);
         } else {
+            console.log(data);
             roomHasUserDao.create(data,function(err,result) {
                 if (err) {
                     callback(err);
                 }
-                return callback(null,res);
+                return callback(null,result);
             });
         }
     });
@@ -173,7 +176,9 @@ roomService.prototype.changeRole = function(req,callback) {
  */
 roomService.prototype.leaveRoom = function (req, callback) {
     var data = req.body;
-    var input = {user_id: GLOBAL.AUTHUSER, room_id: data.room_id};
+    var roomId = req.params.id;
+
+    var input = {user_id: GLOBAL.AUTHUSER, room_id: roomId};
     roomHasUserDao.deleteByUserAndRoom(input, function (err, response) {
         if (err) {
             return callback(err);

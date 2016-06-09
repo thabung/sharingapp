@@ -17,7 +17,6 @@ var roomHasUserDao = function () {
 roomHasUserDao.prototype.create = function (data, callback) {
     models.roomHasUsers.create(data).then(function (res) {
         if (res) {
-            // add to userhasroom
             return callback(null, res);
         } else {
             callback({code: 422, msg: "Failed adding users to room"});
@@ -40,11 +39,12 @@ roomHasUserDao.prototype.isMember = function (roomId, userId,callback) {
 }
 roomHasUserDao.prototype.isAdmin = function (roomId, userId, callback) {
     models.roomHasUsers.find({where: {room_id: roomId, user_id: userId}}).then(function (res) {
+        
         if (res) {
-            if (res.role == "admin") {
+            if (res.dataValues.role == "admin") {
                 return callback(null, true);
             } else {
-                return callback(null, false);
+                return callback({code:401,msg:"You cannot perform this action"});
             }
         } else {
             return callback({code:401,msg:"You cannot perform this action"});

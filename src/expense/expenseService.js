@@ -83,6 +83,34 @@ expenseService.prototype.getStatusCode = function (req, callback) {
 };
 
 
+/**
+ * Get the expense summary of room
+ * 
+ * @param {type} req
+ * @param {type} callback
+ * @returns {undefined}
+ */
+expenseService.prototype.expenseSummary = function(req,callback) {
+    var data = req.body;
+    roomHasUserDao.isMember(data.room_id,GLOBAL.AUTHUSER,function(err,result) {
+        if (err) {
+            return callback(err);
+        }
+        expenseDao.getExpenseSummary(data,function(err,res1) {
+//            console.log();
+        });
+
+    });
+};
+
+
+expenseService.prototype.report = function(req,callback) {
+    var data = req.body;
+    
+    
+};
+
+
 
 
 // change admin roles

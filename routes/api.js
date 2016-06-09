@@ -43,6 +43,7 @@ router.post('/reset-password',authCtrl.resetPassword);
 
 router.post('/rooms',validateToken,roomCtrl.create);
 router.get('/rooms/:id',validateToken,roomCtrl.read);
+router.post('/rooms/:id/user',validateToken,roomCtrl.addUserToRoom);
 
 // expese cal
 router.post('/expense',validateToken,expenseCtrl.create);
