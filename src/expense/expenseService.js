@@ -18,7 +18,7 @@ var expenseService = function () {
  */
 expenseService.prototype.create = function(req,callback) {
     var data = req.body;
-    roomHasUserDao.isMember(data.room_id,data.user_id, function(err,result) {
+    roomHasUserDao.isMember(data.room_id,GLOBAL.AUTHUSER, function(err,result) {
         if (err) {
            return callback(err);
         }
@@ -26,10 +26,11 @@ expenseService.prototype.create = function(req,callback) {
             if (err) {
                 return callback(err);
             } 
-            console.log("------------------------")
-//            console.log(res1);
+           
+           
             data.uid = res1.dataValues.status;
             data.user_id = GLOBAL.AUTHUSER;
+            
             console.log(data);
             expenseDao.create(data,function(err,res2) {
                 if (err) {

@@ -5,7 +5,7 @@
         <group>
             <file>file:/home/thabung/code/sharingapp/src/room/roomDao.js</file>
             <file>file:/home/thabung/code/sharingapp/src/room/roomService.js</file>
-            <file>file:/home/thabung/code/sharingapp/src/expense/expenseManager.js</file>
+            <file>file:/home/thabung/code/sharingapp/src/expense/expenseService.js</file>
             <file>file:/home/thabung/code/sharingapp/src/room/roomHasUserDao.js</file>
             <file>file:/home/thabung/code/sharingapp/models/expense.js</file>
             <file>file:/home/thabung/code/sharingapp/models/index.js</file>
@@ -15,6 +15,15 @@
             <file>file:/home/thabung/code/sharingapp/models/expenseStatus.js</file>
             <file>file:/home/thabung/code/sharingapp/src/expense/expenseStatusDao.js</file>
             <file>file:/home/thabung/code/sharingapp/src/expense/expenseDao.js</file>
+            <file>file:/home/thabung/code/sharingapp/src/controller/apiController.js</file>
+            <file>file:/home/thabung/code/sharingapp/src/controller/userController.js</file>
+            <file>file:/home/thabung/code/sharingapp/src/controller/roomController.js</file>
+            <file>file:/home/thabung/code/sharingapp/src/controller/expenseController.js</file>
+            <file>file:/home/thabung/code/sharingapp/routes/api.js</file>
+            <file>file:/home/thabung/code/sharingapp/src/user/userDao.js</file>
+            <file>file:/home/thabung/code/sharingapp/src/mischelper.js</file>
+            <file>file:/home/thabung/code/sharingapp/src/controller/commonCtrl.js</file>
+            <file>file:/home/thabung/code/sharingapp/node_modules/md5/test.js</file>
         </group>
     </open-files>
 </project-private>

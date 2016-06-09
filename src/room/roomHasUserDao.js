@@ -34,7 +34,7 @@ roomHasUserDao.prototype.isMember = function (roomId, userId,callback) {
         if (res) {
            return callback(null,res);
         } else {
-            return callback(res);
+            return callback({code:422,msg:"You are not a member"});
         }
     });
 }
