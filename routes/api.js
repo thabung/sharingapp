@@ -45,6 +45,8 @@ router.post('/rooms',validateToken,roomCtrl.create);
 router.get('/rooms/:id',validateToken,roomCtrl.read);
 router.post('/rooms/:id/user',validateToken,roomCtrl.addUserToRoom);
 
+router.get('/rooms/:room_id/report/:uid',validateToken,expenseCtrl.expenseSummary);
+
 // expese cal
 router.post('/expense',validateToken,expenseCtrl.create);
 

@@ -9,6 +9,11 @@ expenseController.prototype.create = function (req, res) {
         return commonCtrl.jsonOutput(err, res, data);
     });
 }
+expenseController.prototype.expenseSummary = function (req, res) {
+    expenseService.expenseSummary(req, function (err, data) {
+        return commonCtrl.jsonOutput(err, res, data);
+    });
+}
 
 
 

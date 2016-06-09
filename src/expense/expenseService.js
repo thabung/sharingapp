@@ -91,13 +91,21 @@ expenseService.prototype.getStatusCode = function (req, callback) {
  * @returns {undefined}
  */
 expenseService.prototype.expenseSummary = function(req,callback) {
-    var data = req.body;
-    roomHasUserDao.isMember(data.room_id,GLOBAL.AUTHUSER,function(err,result) {
+    var roomId  = req.params.room_id;
+    var uid  = req.params.uid;
+    roomHasUserDao.isMember(roomId,GLOBAL.AUTHUSER,function(err,result) {
         if (err) {
             return callback(err);
         }
+        var data = {
+            room_id:roomId,
+            uid:uid
+        }
         expenseDao.getExpenseSummary(data,function(err,res1) {
-//            console.log();
+            if (err) {
+                return callback(err);
+            }
+            return callback(null,res1);
         });
 
     });

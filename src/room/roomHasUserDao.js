@@ -15,13 +15,25 @@ var roomHasUserDao = function () {
  * @returns {undefined}
  */
 roomHasUserDao.prototype.create = function (data, callback) {
-    models.roomHasUsers.create(data).then(function (res) {
-        if (res) {
-            return callback(null, res);
+    models.roomHasUsers.find({where: {
+            user_id: data.user_id
+        }}).then(function (roomHasUser) {
+        if (roomHasUser) {
+            callback({code: 409, msg: "User already present"});
         } else {
-            callback({code: 422, msg: "Failed adding users to room"});
+            models.roomHasUsers.create(data).then(function (res) {
+                if (res) {
+                    return callback(null, res);
+                } else {
+                    return callback({code: 422, msg: "Failed adding users to room"});
+                }
+            });
         }
     });
+    
+    
+    
+    
 };
 
 roomHasUserDao.prototype.get = function (req, callback) {
