@@ -1,2 +1,36 @@
-h1= title
-p Welcome to #{title}
+doctype html
+html(ng-app='mainApp')
+  head
+    title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/bower_components/bootstrap/dist/css/bootstrap.css')
+    link(rel='stylesheet', href='/bower_components/angular-material/angular-material.css')
+    link(rel='stylesheet', href='/bower_components/angular-ui-grid/ui-grid.min.css')
+
+    link(rel='stylesheet', href='/stylesheets/login.css')
+
+    script(type='text/javascript', src='/bower_components/angular/angular.js')
+    script(src='/bower_components/angular-aria/angular-aria.js')
+    script(src='/bower_components/angular-animate/angular-animate.js')
+    script(src='/bower_components/angular-material/angular-material.js')
+    script(src='/bower_components/angular-ui-grid/ui-grid.min.js')
+
+    script(src='http://ui-grid.info/docs/grunt-scripts/csv.js')
+    script(src='http://ui-grid.info/docs/grunt-scripts/pdfmake.js')
+
+    script(type='text/javascript', src='/bower_components/angular-cookies/angular-cookies.js')
+    script(type='text/javascript', src='/bower_components/angular-ui-router/release/angular-ui-router.js')
+    script(type='text/javascript', src='/bower_components/ng-resource/dist/ng-resource.js')
+    script(type='text/javascript', src='/bower_components/angular-resource/angular-resource.js')
+    script(type='text/javascript', src='/app/app-url.js')
+    script(type='text/javascript', src='/app/main.js')
+    script(type='text/javascript', src='/app/url-state.js')
+    script(type='text/javascript', src='/app/auth/auth-factory.js')
+    script(type='text/javascript', src='/app/expense/expense-factory.js')
+    script(type='text/javascript', src='/app/auth/auth-controller.js')
+    script(type='text/javascript', src='/app/expense/dashboard-controller.js')
+    script(type='text/javascript', src='/app/expense/expense-controller.js')
+  body
+    
+    div(ui-view)
+    
